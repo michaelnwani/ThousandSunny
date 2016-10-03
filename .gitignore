@@ -4,3 +4,5 @@ pops/.idea/*
 target
 *.jar
 *.class
+out
+.DS_Store
