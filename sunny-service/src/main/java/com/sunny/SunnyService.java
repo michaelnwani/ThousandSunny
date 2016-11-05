@@ -7,9 +7,6 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-import static java.lang.Thread.sleep;
-
-
 public class SunnyService extends Application<HelloWorldConfiguration> {
     private static final ConnectionHandler connectionHandler = new ConnectionHandler();
     private static final Logger inLogger = new Logger();
@@ -46,7 +43,7 @@ public class SunnyService extends Application<HelloWorldConfiguration> {
 
     public static void main(String[] args) throws Exception{
         System.out.println("Connecting:");
-        getApiController().connect("127.0.0.1", 7496, 0);
+        getApiController().connect("127.0.0.1", 7496, 0, null);
         System.out.println("Disconnecting:");
         getApiController().disconnect();
         new SunnyService().run(args);
