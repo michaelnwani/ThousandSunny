@@ -22,7 +22,6 @@ import com.ib.client.OrderState;
 import com.ib.client.ScannerSubscription;
 import com.ib.client.TagValue;
 import com.ib.client.UnderComp;
-import com.ib.controller.ApiConnection;
 import com.ib.controller.ApiConnection.ILogger;
 import com.ib.controller.Types.BarSize;
 import com.ib.controller.Types.DeepSide;
