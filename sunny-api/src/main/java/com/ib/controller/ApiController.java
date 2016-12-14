@@ -94,8 +94,8 @@ public class ApiController implements EWrapper {
 		m_inLogger = inLogger;
 		m_outLogger = outLogger;
 	}
-	
-	private void startMsgProcessingThread() {
+
+    private void startMsgProcessingThread() {
 		final EReaderSignal signal = new EJavaSignal();		
 		final EReader reader = new EReader(client(), signal);
 		
@@ -114,9 +114,9 @@ public class ApiController implements EWrapper {
 				}
 			}
 		}.start();
-	}
+    }
 
-	public void connect( String host, int port, int clientId, String connectionOpts ) {
+	public void connect(String host, int port, int clientId, String connectionOpts) {
 		m_client.eConnect(host, port, clientId);
 		startMsgProcessingThread();
         sendEOM();
@@ -151,9 +151,10 @@ public class ApiController implements EWrapper {
 		recEOM();
 	}
 
-	@Override public void error(Exception e) {
-		m_connectionHandler.error( e);
-	}
+    @Override
+    public void error(Exception e) {
+        m_connectionHandler.error(e);
+    }
 
 	@Override public void error(int id, int errorCode, String errorMsg) {
 		IOrderHandler handler = m_orderHandlers.get( id);
@@ -376,7 +377,7 @@ public class ApiController implements EWrapper {
 		void contractDetails(ArrayList<ContractDetails> list);
 	}
 
-	public void reqContractDetails( Contract contract, final IContractDetailsHandler processor) {
+	public void reqContractDetails(Contract contract, final IContractDetailsHandler processor) {
 		if (!checkConnection())
 			return;
 

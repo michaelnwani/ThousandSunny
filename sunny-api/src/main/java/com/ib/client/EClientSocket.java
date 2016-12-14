@@ -47,7 +47,7 @@ public class EClientSocket extends EClient implements EClientMsgSink  {
     	sendMsg(msg);
     }
 
-	protected synchronized void eConnect(Socket socket) throws IOException {
+    protected synchronized void eConnect(Socket socket) throws IOException {
 	    // create io streams
 	    m_socketTransport = new ESocket(socket);
 	    m_dis = new DataInputStream(socket.getInputStream());
@@ -67,7 +67,7 @@ public class EClientSocket extends EClient implements EClientMsgSink  {
 	    		reader.processMsgs();
 	    	}       
 	    }
-	}
+    }
 
 	public synchronized void eConnect(Socket socket, int clientId) throws IOException {
 	    m_clientId = clientId;

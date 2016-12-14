@@ -5,7 +5,16 @@ package com.ib.client;
 
 import java.util.Set;
 
-class DefaultEWrapper implements EWrapper {
+// Helper default implementation of EWrapper provided by IB
+public class DefaultEWrapper implements EWrapper {
+	private EReaderSignal eReaderSignal;
+	private EClientSocket eClientSocket;
+    protected int currentOrderId = -1;
+
+    public DefaultEWrapper() {
+        eReaderSignal = new EJavaSignal();
+        eClientSocket = new EClientSocket(this, eReaderSignal);
+    }
 
 	@Override
 	public void tickPrice(int tickerId, int field, double price,
@@ -323,12 +332,14 @@ class DefaultEWrapper implements EWrapper {
 		
 	}
 
-	@Override
-	public void connectAck() {
-		// TODO Auto-generated method stub
-		
-	}
-	
+    @Override
+    public void connectAck() {
+        if (eClientSocket.isAsyncEConnect()) {
+            System.out.println("[connectAck] Acknowledging connection");
+            eClientSocket.startAPI();
+        }
+    }
+
 	@Override
 	public void positionMulti( int reqId, String account, String modelCode, Contract contract, double pos, double avgCost) {
 		// TODO Auto-generated method stub

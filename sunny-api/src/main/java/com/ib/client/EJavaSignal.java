@@ -1,20 +1,20 @@
 package com.ib.client;
 
-
+// Helper default implementation of EReaderSignal provided by IB
 public class EJavaSignal implements EReaderSignal {
-	Object monitor = new Object();
-	Boolean open = false;
-	
-	@Override
-	public void issueSignal() {
-	    synchronized (monitor) {
-	        open = true;
-	        monitor.notifyAll();
-	      }
-	}
+    Object monitor = new Object();
+    Boolean open = false;
 
-	@Override
-	public void waitForSignal() {
+    @Override
+    public void issueSignal() {
+        synchronized (monitor) {
+            open = true;
+            monitor.notifyAll();
+        }
+    }
+
+    @Override
+    public void waitForSignal() {
 		 synchronized (monitor) {
 		      while (!open) {
 		          try {
@@ -27,6 +27,6 @@ public class EJavaSignal implements EReaderSignal {
 		      
 		      open = false;
 		    }
-	}
+    }
 
 }
